@@ -9,6 +9,7 @@ import tailwindcss from '@tailwindcss/vite';
 // https://astro.build/config
 export default defineConfig({
   site: 'https://ravikyada.github.io/devops-journey',
+  base: '/devops-journey',
   output: 'static',
   integrations: [mdx(), sitemap()],
 
