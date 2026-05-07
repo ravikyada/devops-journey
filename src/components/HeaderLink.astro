@@ -1,13 +1,13 @@
 ---
 import type { HTMLAttributes } from 'astro/types';
+import { BASE_PATH } from '../consts';
 
 type Props = HTMLAttributes<'a'>;
 
 const { href, class: className, ...props } = Astro.props;
-const baseUrl = import.meta.env.BASE_URL || '/';
 const pathname = Astro.url.pathname;
-const fullHref = href.startsWith('/') ? baseUrl + href.slice(1) : href;
-const isActive = pathname === fullHref || (href === '/' && pathname === baseUrl.slice(0, -1));
+const fullHref = href === '/' ? BASE_PATH : BASE_PATH + href;
+const isActive = pathname === fullHref || (href === '/' && pathname === BASE_PATH) || (href === '/' && pathname === BASE_PATH + '/');
 ---
 
 <a href={fullHref} class:list={['text-gray-300 hover:text-white px-3 py-2 rounded-md text-sm font-medium transition-colors', className, { 'bg-gray-700 text-white': isActive }]} {...props}>
