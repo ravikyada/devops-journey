@@ -1,5 +1,6 @@
 ---
 // Experience highlights component
+import { withBasePath } from '../consts';
 ---
 
 <section class="py-20 bg-gray-900">
@@ -9,7 +10,7 @@
 			<p class="text-gray-400 text-lg">Key achievements and roles in my DevOps career</p>
 		</div>
 		<div class="grid md:grid-cols-2 gap-8">
-			<div class="bg-gray-800 rounded-lg p-6">
+			<div class="rounded-2xl border border-white/10 bg-gray-800 p-6">
 				<div class="flex items-center mb-4">
 					<div class="w-12 h-12 bg-cyan-600 rounded-lg flex items-center justify-center mr-4">
 						<span class="text-white font-bold text-xl">Sr</span>
@@ -26,7 +27,7 @@
 					<li>• Led migration to AWS EKS with Karpenter for cost optimization</li>
 				</ul>
 			</div>
-			<div class="bg-gray-800 rounded-lg p-6">
+			<div class="rounded-2xl border border-white/10 bg-gray-800 p-6">
 				<div class="flex items-center mb-4">
 					<div class="w-12 h-12 bg-blue-600 rounded-lg flex items-center justify-center mr-4">
 						<span class="text-white font-bold text-xl">Dev</span>
@@ -45,7 +46,7 @@
 			</div>
 		</div>
 		<div class="text-center mt-12">
-			<a href="/experience" class="bg-cyan-600 hover:bg-cyan-700 text-white px-8 py-3 rounded-lg font-semibold transition-colors">
+			<a href={withBasePath('/experience')} class="rounded-xl bg-cyan-500 hover:bg-cyan-400 text-gray-950 px-8 py-3 font-semibold transition-colors">
 				View Full Experience
 			</a>
 		</div>

@@ -1,5 +1,6 @@
 ---
 import { getCollection } from 'astro:content';
+import { withBasePath } from '../consts';
 
 const posts = await getCollection('blog');
 const featuredPosts = posts.sort((a, b) => b.data.pubDate.getTime() - a.data.pubDate.getTime()).slice(0, 3);
@@ -13,13 +14,13 @@ const featuredPosts = posts.sort((a, b) => b.data.pubDate.getTime() - a.data.pub
 		</div>
 		<div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
 			{featuredPosts.map((post) => (
-				<article class="bg-gray-800 rounded-lg overflow-hidden hover:bg-gray-700 transition-colors">
+				<article class="overflow-hidden rounded-2xl border border-white/10 bg-gray-800/70 hover:border-cyan-400/50 transition-colors">
 					{post.data.heroImage && (
 						<img src={post.data.heroImage.src} alt={post.data.heroImage.alt || post.data.title} class="w-full h-48 object-cover" />
 					)}
 					<div class="p-6">
 						<h3 class="text-xl font-semibold text-white mb-2">
-							<a href={`/blog/${post.slug}`} class="hover:text-cyan-400 transition-colors">{post.data.title}</a>
+							<a href={withBasePath(`/blog/${post.slug}`)} class="hover:text-cyan-400 transition-colors">{post.data.title}</a>
 						</h3>
 						<p class="text-gray-400 mb-4">{post.data.description}</p>
 						<div class="flex items-center text-sm text-gray-500">
@@ -32,7 +33,7 @@ const featuredPosts = posts.sort((a, b) => b.data.pubDate.getTime() - a.data.pub
 			))}
 		</div>
 		<div class="text-center mt-12">
-			<a href="/blog" class="bg-cyan-600 hover:bg-cyan-700 text-white px-8 py-3 rounded-lg font-semibold transition-colors">
+			<a href={withBasePath('/blog')} class="rounded-xl bg-cyan-500 hover:bg-cyan-400 text-gray-950 px-8 py-3 font-semibold transition-colors">
 				View All Posts
 			</a>
 		</div>

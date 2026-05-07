@@ -1,12 +1,12 @@
 ---
 import type { HTMLAttributes } from 'astro/types';
-import { BASE_PATH } from '../consts';
+import { BASE_PATH, withBasePath } from '../consts';
 
 type Props = HTMLAttributes<'a'>;
 
 const { href, class: className, ...props } = Astro.props;
 const pathname = Astro.url.pathname;
-const fullHref = href === '/' ? BASE_PATH : BASE_PATH + href;
+const fullHref = withBasePath(href || '/');
 const isActive = pathname === fullHref || (href === '/' && pathname === BASE_PATH) || (href === '/' && pathname === BASE_PATH + '/');
 ---
 
