@@ -64,17 +64,3 @@ const { title, description, image = FallbackImage } = Astro.props;
   gtag('js', new Date());
   gtag('config', 'GA_MEASUREMENT_ID');
 </script>
-
-<!-- GitHub Pages SPA routing -->
-<script>
-  // Handle client-side routing for GitHub Pages subdirectory
-  (function() {
-    var l = window.location;
-    // Check if we have a query parameter that indicates a redirect from 404.html
-    if (l.search && l.search.startsWith('?/')) {
-      var path = l.search.slice(2); // Remove '?/'
-      // Replace the current URL with the correct path
-      window.history.replaceState(null, null, l.pathname.replace(/\/$/, '') + '/' + path + l.hash);
-    }
-  })();
-</script>
