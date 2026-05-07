@@ -1,0 +1,111 @@
+---
+// @ts-ignore
+import { getCollection } from 'astro:content';
+
+const posts = await getCollection('blog');
+const searchData = posts.map(post => ({
+  title: post.data.title,
+  description: post.data.description,
+  slug: post.slug,
+  tags: post.data.tags || [],
+  pubDate: post.data.pubDate,
+}));
+---
+
+<div id="search-container" class="space-y-6">
+  <div class="relative">
+    <input
+      type="text"
+      id="search-input"
+      placeholder="Search blog posts..."
+      class="w-full px-4 py-3 bg-gray-800 border border-gray-700 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-cyan-500 focus:border-transparent"
+    />
+    <div id="search-results" class="absolute top-full left-0 right-0 bg-gray-800 border border-gray-700 rounded-lg mt-2 max-h-96 overflow-y-auto z-10 hidden">
+      <!-- Results will be populated by JavaScript -->
+    </div>
+  </div>
+
+  <div id="all-posts" class="space-y-4">
+    <h2 class="text-2xl font-bold text-white">All Posts</h2>
+    {posts.map(post => (
+      <article class="bg-gray-800 rounded-lg p-6 border border-gray-700 hover:border-cyan-500 transition-colors">
+        <h3 class="text-xl font-semibold text-white mb-2">
+          <a href={`/blog/${post.slug}/`} class="hover:text-cyan-400 transition-colors">
+            {post.data.title}
+          </a>
+        </h3>
+        <p class="text-gray-300 mb-3">{post.data.description}</p>
+        <div class="flex items-center justify-between text-sm text-gray-400">
+          <time datetime={post.data.pubDate.toISOString()}>
+            {post.data.pubDate.toLocaleDateString('en-US', {
+              year: 'numeric',
+              month: 'long',
+              day: 'numeric'
+            })}
+          </time>
+          {post.data.tags && (
+            <div class="flex gap-2">
+              {post.data.tags.map(tag => (
+                <span class="bg-gray-700 px-2 py-1 rounded text-xs">#{tag}</span>
+              ))}
+            </div>
+          )}
+        </div>
+      </article>
+    ))}
+  </div>
+</div>
+
+<script define:vars={{ searchData }}>
+  // Client-side search functionality
+  document.addEventListener('DOMContentLoaded', () => {
+    const searchInput = document.getElementById('search-input') as HTMLInputElement;
+    const searchResults = document.getElementById('search-results') as HTMLElement;
+    const allPosts = document.getElementById('all-posts') as HTMLElement;
+
+    function searchPosts(query: string) {
+      if (!query.trim()) {
+        searchResults.classList.add('hidden');
+        allPosts.classList.remove('hidden');
+        return;
+      }
+
+      const filteredPosts = searchData.filter((post: any) =>
+        post.title.toLowerCase().includes(query.toLowerCase()) ||
+        post.description.toLowerCase().includes(query.toLowerCase()) ||
+        post.tags.some((tag: string) => tag.toLowerCase().includes(query.toLowerCase()))
+      );
+
+      displayResults(filteredPosts);
+    }
+
+    function displayResults(results: any[]) {
+      if (results.length === 0) {
+        searchResults.innerHTML = '<div class="p-4 text-gray-400">No posts found</div>';
+      } else {
+        searchResults.innerHTML = results.map((post: any) => `
+          <a href="/blog/${post.slug}/" class="block p-4 hover:bg-gray-700 border-b border-gray-700 last:border-b-0">
+            <h3 class="text-lg font-semibold text-white mb-1">${post.title}</h3>
+            <p class="text-gray-300 text-sm mb-2">${post.description}</p>
+            <div class="flex items-center justify-between text-xs text-gray-400">
+              <time>${new Date(post.pubDate).toLocaleDateString('en-US', {
+                year: 'numeric',
+                month: 'long',
+                day: 'numeric'
+              })}</time>
+              ${post.tags.length > 0 ? `<div class="flex gap-1">${post.tags.map((tag: string) => `<span class="bg-gray-600 px-2 py-1 rounded">#${tag}</span>`).join('')}</div>` : ''}
+            </div>
+          </a>
+        `).join('');
+      }
+
+      searchResults.classList.remove('hidden');
+      allPosts.classList.add('hidden');
+    }
+
+    searchInput.addEventListener('input', (e) => {
+      const query = (e.target as HTMLInputElement).value;
+      searchPosts(query);
+    });
+  });
+</script>

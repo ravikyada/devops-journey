@@ -1,0 +1,150 @@
+---
+import BaseHead from '../components/BaseHead.astro';
+import Footer from '../components/Footer.astro';
+import Header from '../components/Header.astro';
+import { SITE_DESCRIPTION, SITE_TITLE } from '../consts';
+---
+
+<!doctype html>
+<html lang="en" class="dark">
+	<head>
+		<BaseHead title={`Experience | ${SITE_TITLE}`} description={SITE_DESCRIPTION} />
+	</head>
+	<body class="bg-gray-900 text-gray-100 min-h-screen">
+		<Header />
+		<main class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-20">
+			<div class="mb-12">
+				<h1 class="text-4xl md:text-5xl font-bold text-white mb-6">Professional Experience</h1>
+				<div class="w-24 h-1 bg-cyan-500 mb-8"></div>
+			</div>
+
+			<div class="space-y-12">
+				<div class="bg-gray-800 rounded-lg p-8">
+					<div class="flex flex-col md:flex-row md:items-center md:justify-between mb-6">
+						<div>
+							<h2 class="text-2xl font-semibold text-white mb-2">Senior DevOps Engineer</h2>
+							<p class="text-cyan-400 text-lg mb-2">TechCorp Inc.</p>
+							<p class="text-gray-400">2022 - Present • San Francisco, CA</p>
+						</div>
+						<div class="mt-4 md:mt-0">
+							<span class="bg-cyan-600 text-white px-3 py-1 rounded-full text-sm">Current Role</span>
+						</div>
+					</div>
+					<ul class="space-y-3 text-gray-300">
+						<li class="flex items-start">
+							<span class="w-2 h-2 bg-cyan-500 rounded-full mr-3 mt-2 flex-shrink-0"></span>
+							<span>Architected and deployed Kubernetes clusters serving 1M+ users with 99.9% uptime</span>
+						</li>
+						<li class="flex items-start">
+							<span class="w-2 h-2 bg-cyan-500 rounded-full mr-3 mt-2 flex-shrink-0"></span>
+							<span>Reduced deployment time by 80% by implementing advanced GitLab CI/CD pipelines with parallel processing</span>
+						</li>
+						<li class="flex items-start">
+							<span class="w-2 h-2 bg-cyan-500 rounded-full mr-3 mt-2 flex-shrink-0"></span>
+							<span>Implemented infrastructure as code with Terraform, managing 50+ microservices across multiple environments</span>
+						</li>
+						<li class="flex items-start">
+							<span class="w-2 h-2 bg-cyan-500 rounded-full mr-3 mt-2 flex-shrink-0"></span>
+							<span>Led migration to AWS EKS with Karpenter, reducing EC2 costs by 35% through intelligent auto-scaling</span>
+						</li>
+						<li class="flex items-start">
+							<span class="w-2 h-2 bg-cyan-500 rounded-full mr-3 mt-2 flex-shrink-0"></span>
+							<span>Established comprehensive monitoring stack using Prometheus, Grafana, and ELK stack</span>
+						</li>
+					</ul>
+				</div>
+
+				<div class="bg-gray-800 rounded-lg p-8">
+					<div class="flex flex-col md:flex-row md:items-center md:justify-between mb-6">
+						<div>
+							<h2 class="text-2xl font-semibold text-white mb-2">DevOps Engineer</h2>
+							<p class="text-cyan-400 text-lg mb-2">CloudTech Solutions</p>
+							<p class="text-gray-400">2020 - 2022 • Remote</p>
+						</div>
+					</div>
+					<ul class="space-y-3 text-gray-300">
+						<li class="flex items-start">
+							<span class="w-2 h-2 bg-cyan-500 rounded-full mr-3 mt-2 flex-shrink-0"></span>
+							<span>Built automated monitoring and alerting system serving 500+ applications</span>
+						</li>
+						<li class="flex items-start">
+							<span class="w-2 h-2 bg-cyan-500 rounded-full mr-3 mt-2 flex-shrink-0"></span>
+							<span>Containerized 30+ legacy applications using Docker, improving deployment consistency</span>
+						</li>
+						<li class="flex items-start">
+							<span class="w-2 h-2 bg-cyan-500 rounded-full mr-3 mt-2 flex-shrink-0"></span>
+							<span>Implemented blue-green deployment strategy, reducing production downtime by 95%</span>
+						</li>
+						<li class="flex items-start">
+							<span class="w-2 h-2 bg-cyan-500 rounded-full mr-3 mt-2 flex-shrink-0"></span>
+							<span>Mentored junior engineers on AWS best practices and DevOps methodologies</span>
+						</li>
+						<li class="flex items-start">
+							<span class="w-2 h-2 bg-cyan-500 rounded-full mr-3 mt-2 flex-shrink-0"></span>
+							<span>Developed custom Terraform modules for reusable infrastructure components</span>
+						</li>
+					</ul>
+				</div>
+
+				<div class="bg-gray-800 rounded-lg p-8">
+					<div class="flex flex-col md:flex-row md:items-center md:justify-between mb-6">
+						<div>
+							<h2 class="text-2xl font-semibold text-white mb-2">Systems Administrator</h2>
+							<p class="text-cyan-400 text-lg mb-2">DataFlow Systems</p>
+							<p class="text-gray-400">2019 - 2020 • New York, NY</p>
+						</div>
+					</div>
+					<ul class="space-y-3 text-gray-300">
+						<li class="flex items-start">
+							<span class="w-2 h-2 bg-cyan-500 rounded-full mr-3 mt-2 flex-shrink-0"></span>
+							<span>Managed Linux infrastructure for 200+ servers across multiple data centers</span>
+						</li>
+						<li class="flex items-start">
+							<span class="w-2 h-2 bg-cyan-500 rounded-full mr-3 mt-2 flex-shrink-0"></span>
+							<span>Implemented automated backup and disaster recovery solutions</span>
+						</li>
+						<li class="flex items-start">
+							<span class="w-2 h-2 bg-cyan-500 rounded-full mr-3 mt-2 flex-shrink-0"></span>
+							<span>Optimized system performance, reducing response times by 40%</span>
+						</li>
+						<li class="flex items-start">
+							<span class="w-2 h-2 bg-cyan-500 rounded-full mr-3 mt-2 flex-shrink-0"></span>
+							<span>Established security best practices and compliance standards</span>
+						</li>
+					</ul>
+				</div>
+			</div>
+
+			<section class="mt-16">
+				<h2 class="text-3xl font-bold text-white mb-8">Skills & Technologies</h2>
+				<div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+					<div class="bg-gray-800 rounded-lg p-4 text-center">
+						<span class="text-cyan-400 font-semibold">AWS</span>
+					</div>
+					<div class="bg-gray-800 rounded-lg p-4 text-center">
+						<span class="text-cyan-400 font-semibold">Kubernetes</span>
+					</div>
+					<div class="bg-gray-800 rounded-lg p-4 text-center">
+						<span class="text-cyan-400 font-semibold">Terraform</span>
+					</div>
+					<div class="bg-gray-800 rounded-lg p-4 text-center">
+						<span class="text-cyan-400 font-semibold">Docker</span>
+					</div>
+					<div class="bg-gray-800 rounded-lg p-4 text-center">
+						<span class="text-cyan-400 font-semibold">GitLab CI/CD</span>
+					</div>
+					<div class="bg-gray-800 rounded-lg p-4 text-center">
+						<span class="text-cyan-400 font-semibold">Prometheus</span>
+					</div>
+					<div class="bg-gray-800 rounded-lg p-4 text-center">
+						<span class="text-cyan-400 font-semibold">Python</span>
+					</div>
+					<div class="bg-gray-800 rounded-lg p-4 text-center">
+						<span class="text-cyan-400 font-semibold">Linux</span>
+					</div>
+				</div>
+			</section>
+		</main>
+		<Footer />
+	</body>
+</html>

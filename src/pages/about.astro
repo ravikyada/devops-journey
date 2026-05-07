@@ -1,0 +1,106 @@
+---
+import BaseHead from '../components/BaseHead.astro';
+import Footer from '../components/Footer.astro';
+import Header from '../components/Header.astro';
+import { SITE_DESCRIPTION, SITE_TITLE } from '../consts';
+---
+
+<!doctype html>
+<html lang="en" class="dark">
+	<head>
+		<BaseHead title={`About | ${SITE_TITLE}`} description={SITE_DESCRIPTION} />
+	</head>
+	<body class="bg-gray-900 text-gray-100 min-h-screen">
+		<Header />
+		<main class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-20">
+			<div class="mb-12">
+				<h1 class="text-4xl md:text-5xl font-bold text-white mb-6">About Me</h1>
+				<div class="w-24 h-1 bg-cyan-500 mb-8"></div>
+			</div>
+
+			<div class="grid md:grid-cols-2 gap-12 items-center mb-16">
+				<div>
+					<h2 class="text-2xl font-semibold text-white mb-4">Senior DevOps Engineer</h2>
+					<p class="text-gray-300 text-lg mb-6">
+						With over 5 years of experience in DevOps and cloud infrastructure, I specialize in building scalable, secure, and automated systems that drive business growth.
+					</p>
+					<p class="text-gray-300 text-lg mb-6">
+						My passion lies in bridging the gap between development and operations, creating seamless CI/CD pipelines, and optimizing cloud costs while maintaining high availability.
+					</p>
+				</div>
+				<div class="bg-gray-800 rounded-lg p-8">
+					<h3 class="text-xl font-semibold text-white mb-4">Quick Facts</h3>
+					<ul class="space-y-3 text-gray-300">
+						<li class="flex items-center">
+							<span class="w-2 h-2 bg-cyan-500 rounded-full mr-3"></span>
+							5+ years in DevOps
+						</li>
+						<li class="flex items-center">
+							<span class="w-2 h-2 bg-cyan-500 rounded-full mr-3"></span>
+							50+ AWS services mastered
+						</li>
+						<li class="flex items-center">
+							<span class="w-2 h-2 bg-cyan-500 rounded-full mr-3"></span>
+							100+ Kubernetes clusters deployed
+						</li>
+						<li class="flex items-center">
+							<span class="w-2 h-2 bg-cyan-500 rounded-full mr-3"></span>
+							Open-source contributor
+						</li>
+					</ul>
+				</div>
+			</div>
+
+			<section class="mb-16">
+				<h2 class="text-3xl font-bold text-white mb-8">What I Do</h2>
+				<div class="grid md:grid-cols-3 gap-8">
+					<div class="bg-gray-800 rounded-lg p-6">
+						<div class="w-12 h-12 bg-orange-500 rounded-lg flex items-center justify-center mb-4">
+							<span class="text-white font-bold text-xl">☁️</span>
+						</div>
+						<h3 class="text-xl font-semibold text-white mb-3">Cloud Architecture</h3>
+						<p class="text-gray-300">Design and implement scalable cloud solutions using AWS, focusing on cost optimization and high availability.</p>
+					</div>
+					<div class="bg-gray-800 rounded-lg p-6">
+						<div class="w-12 h-12 bg-blue-500 rounded-lg flex items-center justify-center mb-4">
+							<span class="text-white font-bold text-xl">🚀</span>
+						</div>
+						<h3 class="text-xl font-semibold text-white mb-3">CI/CD Pipelines</h3>
+						<p class="text-gray-300">Build automated deployment pipelines that ensure fast, reliable, and secure software delivery.</p>
+					</div>
+					<div class="bg-gray-800 rounded-lg p-6">
+						<div class="w-12 h-12 bg-purple-500 rounded-lg flex items-center justify-center mb-4">
+							<span class="text-white font-bold text-xl">🔧</span>
+						</div>
+						<h3 class="text-xl font-semibold text-white mb-3">Infrastructure as Code</h3>
+						<p class="text-gray-300">Manage infrastructure using Terraform and other IaC tools for consistent and version-controlled deployments.</p>
+					</div>
+				</div>
+			</section>
+
+			<section>
+				<h2 class="text-3xl font-bold text-white mb-8">Beyond Work</h2>
+				<p class="text-gray-300 text-lg mb-6">
+					When I'm not optimizing infrastructure or writing code, you can find me contributing to open-source projects, speaking at tech conferences, or exploring the latest in cloud technology. I believe in continuous learning and sharing knowledge with the community.
+				</p>
+				<p class="text-gray-300 text-lg">
+					I'm always excited to connect with fellow engineers, discuss new technologies, or collaborate on interesting projects. Feel free to reach out!
+				</p>
+			</section>
+		</main>
+		<Footer />
+	</body>
+</html>
+		pellentesque eu. Fusce ut placerat orci nulla pellentesque dignissim enim sit amet. Ut enim
+		blandit volutpat maecenas volutpat blandit aliquam etiam. Id donec ultrices tincidunt arcu. Id
+		cursus metus aliquam eleifend mi.
+	</p>
+
+	<p>
+		Tempus quam pellentesque nec nam aliquam sem. Risus at ultrices mi tempus imperdiet. Id porta
+		nibh venenatis cras sed felis eget velit. Ipsum a arcu cursus vitae. Facilisis magna etiam
+		tempor orci eu lobortis elementum. Tincidunt dui ut ornare lectus sit. Quisque non tellus orci
+		ac. Blandit libero volutpat sed cras. Nec tincidunt praesent semper feugiat nibh sed pulvinar
+		proin gravida. Egestas integer eget aliquet nibh praesent tristique magna.
+	</p>
+</Layout>
