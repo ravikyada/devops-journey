@@ -1,5 +1,4 @@
 ---
-import { Image } from 'astro:assets';
 import type { CollectionEntry } from 'astro:content';
 import BaseHead from '../components/BaseHead.astro';
 import Footer from '../components/Footer.astro';
@@ -17,7 +16,6 @@ const updatedDate = rawProps.updatedDate
 		? new Date(rawProps.updatedDate)
 		: rawProps.updatedDate
 	: null;
-const heroImage = rawProps.heroImage;
 const tags = rawProps.tags ?? [];
 const author = rawProps.author ?? 'Ravi Kyada';
 ---
@@ -32,19 +30,7 @@ const author = rawProps.author ?? 'Ravi Kyada';
 		<main class="max-w-7xl mx-auto px-4 py-12 sm:px-6 lg:px-8">
 			<div class="grid gap-10 lg:grid-cols-[minmax(0,1fr)_320px]">
 				<section class="space-y-10">
-					{heroImage && (
-						<div class="overflow-hidden rounded-[2rem] border border-white/10 bg-slate-900/80 shadow-2xl shadow-slate-950/25">
-							<Image
-								width={1200}
-								height={600}
-								src={heroImage}
-								alt={title}
-								class="h-72 w-full object-cover object-center"
-							/>
-						</div>
-					)}
-
-					<div class="rounded-[2rem] border border-white/10 bg-slate-900/90 p-8 shadow-xl shadow-slate-950/20">
+					<div class="rounded-3xl border border-white/10 bg-slate-900/90 p-8 shadow-xl shadow-slate-950/20">
 						<div class="space-y-6">
 							<div class="space-y-3 text-center">
 								<p class="text-sm uppercase tracking-[0.32em] text-cyan-300">Technical blog</p>

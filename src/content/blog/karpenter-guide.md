@@ -3,7 +3,6 @@ title: 'Building Scalable Kubernetes Clusters with Karpenter'
 description: 'Learn how to optimize your EKS clusters for cost and performance using Karpenter auto-scaling'
 pubDate: '2024-01-15'
 updatedDate: '2024-01-20'
-heroImage: '../../assets/blog-placeholder-3.jpg'
 tags: ['kubernetes', 'aws', 'karpenter', 'autoscaling', 'cost-optimization']
 ---
 

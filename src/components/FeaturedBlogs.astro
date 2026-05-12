@@ -15,10 +15,7 @@ const featuredPosts = posts.sort((a, b) => b.data.pubDate.getTime() - a.data.pub
 		<div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
 			{featuredPosts.map((post) => (
 				<article class="overflow-hidden rounded-2xl border border-white/10 bg-gray-800/70 hover:border-cyan-400/50 transition-colors">
-					{post.data.heroImage && (
-						<img src={post.data.heroImage.src} alt={post.data.heroImage.alt || post.data.title} class="w-full h-48 object-cover" />
-					)}
-					<div class="p-6">
+<div class=\"p-6\">
 						<h3 class="text-xl font-semibold text-white mb-2">
 							<a href={withBasePath(`/blog/${post.slug}`)} class="hover:text-cyan-400 transition-colors">{post.data.title}</a>
 						</h3>
