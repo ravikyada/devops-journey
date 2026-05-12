@@ -6,9 +6,20 @@ import Footer from '../components/Footer.astro';
 import FormattedDate from '../components/FormattedDate.astro';
 import Header from '../components/Header.astro';
 
-type Props = CollectionEntry<'blog'>['data'];
+type PostProps = CollectionEntry<'blog'>['data'];
 
-const { title, description, pubDate, updatedDate, heroImage } = Astro.props;
+const rawProps = Astro.props as PostProps;
+const title = rawProps.title;
+const description = rawProps.description;
+const pubDate = typeof rawProps.pubDate === 'string' ? new Date(rawProps.pubDate) : rawProps.pubDate;
+const updatedDate = rawProps.updatedDate
+	? typeof rawProps.updatedDate === 'string'
+		? new Date(rawProps.updatedDate)
+		: rawProps.updatedDate
+	: null;
+const heroImage = rawProps.heroImage;
+const tags = rawProps.tags ?? [];
+const author = rawProps.author ?? 'Ravi Kyada';
 ---
 
 <html lang="en" class="dark">
@@ -16,62 +27,118 @@ const { title, description, pubDate, updatedDate, heroImage } = Astro.props;
 		<BaseHead title={title} description={description} />
 	</head>
 
-	<body class="bg-gray-900 text-gray-100">
+	<body class="bg-slate-950 text-slate-100">
 		<Header />
-		<main class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
-			<article>
-				{heroImage && (
-					<div class="mb-8">
-						<Image
-							width={1020}
-							height={510}
-							src={heroImage}
-							alt=""
-							class="w-full rounded-lg shadow-lg"
-						/>
-					</div>
-				)}
-				<div class="prose prose-lg prose-invert max-w-none">
-					<header class="text-center mb-12">
-						<div class="text-cyan-400 mb-4">
-							<FormattedDate date={pubDate} />
-							{updatedDate && (
-								<span class="ml-4 text-sm italic">
-									Last updated on <FormattedDate date={updatedDate} />
-								</span>
-							)}
+		<main class="max-w-7xl mx-auto px-4 py-12 sm:px-6 lg:px-8">
+			<div class="grid gap-10 lg:grid-cols-[minmax(0,1fr)_320px]">
+				<section class="space-y-10">
+					{heroImage && (
+						<div class="overflow-hidden rounded-[2rem] border border-white/10 bg-slate-900/80 shadow-2xl shadow-slate-950/25">
+							<Image
+								width={1200}
+								height={600}
+								src={heroImage}
+								alt={title}
+								class="h-72 w-full object-cover object-center"
+							/>
 						</div>
-						<h1 class="text-4xl md:text-5xl font-bold text-white mb-6">{title}</h1>
-						<hr class="border-gray-700" />
-					</header>
-					<slot />
-				</div>
-			</article>
+					)}
+
+					<div class="rounded-[2rem] border border-white/10 bg-slate-900/90 p-8 shadow-xl shadow-slate-950/20">
+						<div class="space-y-6">
+							<div class="space-y-3 text-center">
+								<p class="text-sm uppercase tracking-[0.32em] text-cyan-300">Technical blog</p>
+								<h1 class="text-4xl font-extrabold tracking-tight text-white sm:text-5xl">{title}</h1>
+								<p class="mx-auto max-w-3xl text-slate-300">{description}</p>
+							</div>
+							<div class="grid gap-4 md:grid-cols-[auto_1fr] md:items-center md:gap-6">
+								<div class="space-y-2 text-sm text-slate-400">
+									<p>Published</p>
+									<p class="text-slate-300 font-medium">{<FormattedDate date={pubDate} />}</p>
+								</div>
+								<div class="space-y-2 text-sm text-slate-400">
+									<p>Author</p>
+									<p class="text-slate-300 font-medium">{author}</p>
+								</div>
+							</div>
+							{updatedDate && (
+								<p class="text-sm text-slate-400">Last updated on <span class="text-slate-200"><FormattedDate date={updatedDate} /></span></p>
+							)}
+							<div class="flex flex-wrap gap-2">
+								{tags.map((tag) => (
+									<span key={tag} class="rounded-full border border-slate-700 bg-slate-950/70 px-3 py-1 text-sm uppercase tracking-[0.18em] text-slate-300">{tag}</span>
+								))}
+							</div>
+						</div>
+					</div>
+
+					<article class="prose prose-invert prose-lg max-w-none rounded-[2rem] border border-white/10 bg-slate-900/90 p-8 shadow-xl shadow-slate-950/20">
+						<slot />
+					</article>
+				</section>
+
+				<aside class="space-y-8">
+					<div class="sticky top-24 space-y-6 rounded-[2rem] border border-white/10 bg-slate-900/95 p-6 shadow-2xl shadow-slate-950/20">
+						<div>
+							<p class="text-xs uppercase tracking-[0.28em] text-cyan-300">On this page</p>
+							<h2 class="mt-3 text-xl font-semibold text-white">Table of contents</h2>
+						</div>
+						<nav id="toc" class="space-y-2 text-sm text-slate-300"></nav>
+					</div>
+					<div class="rounded-[2rem] border border-white/10 bg-slate-900/95 p-6 shadow-2xl shadow-slate-950/20">
+						<h2 class="text-xl font-semibold text-white">Want more?</h2>
+						<p class="mt-4 text-slate-400">Explore related DevOps guides, tutorials, and infrastructure stories from the blog archive.</p>
+						<a href="/blog" class="inline-flex items-center justify-center rounded-full border border-cyan-500 bg-cyan-500/10 px-5 py-3 text-sm font-semibold text-cyan-300 transition hover:bg-cyan-500/20">Browse all posts</a>
+					</div>
+				</aside>
+			</div>
 		</main>
 
-		<!-- Giscus Comments -->
-		<section class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 pb-12">
-			<div class="border-t border-gray-700 pt-8">
-				<h2 class="text-2xl font-bold text-white mb-6">Comments</h2>
-				<script
-					src="https://giscus.app/client.js"
-					data-repo="ravikyada/devops-journey"
-					data-repo-id="your-repo-id"
-					data-category="Comments"
-					data-category-id="your-category-id"
-					data-mapping="pathname"
-					data-strict="0"
-					data-reactions-enabled="1"
-					data-emit-metadata="0"
-					data-input-position="bottom"
-					data-theme="dark"
-					data-lang="en"
-					crossorigin="anonymous"
-					async>
-				</script>
+		<section class="max-w-7xl mx-auto px-4 pb-12 sm:px-6 lg:px-8">
+			<div class="rounded-[2rem] border border-white/10 bg-slate-900/90 p-8 shadow-2xl shadow-slate-950/15">
+				<h2 class="text-2xl font-semibold text-white">Comments</h2>
+				<p class="mt-3 text-slate-400">Discuss the article and share your thoughts.</p>
+				<div class="mt-6">
+					<script
+						src="https://giscus.app/client.js"
+						data-repo="ravikyada/devops-journey"
+						data-repo-id="your-repo-id"
+						data-category="Comments"
+						data-category-id="your-category-id"
+						data-mapping="pathname"
+						data-strict="0"
+						data-reactions-enabled="1"
+						data-emit-metadata="0"
+						data-input-position="bottom"
+						data-theme="dark"
+						data-lang="en"
+						crossorigin="anonymous"
+						async>
+					</script>
+				</div>
 			</div>
 		</section>
 
 		<Footer />
+
+		<script is:inline>
+			function buildToc() {
+				const toc = document.getElementById('toc');
+				if (!toc) return;
+				const headings = Array.from(document.querySelectorAll('article.prose h2, article.prose h3'));
+				if (!headings.length) {
+					toc.innerHTML = '<p class="text-slate-500">No headings found in this article.</p>';
+					return;
+				}
+				toc.innerHTML = headings
+					.map((heading) => {
+						const id = heading.id || heading.textContent?.trim().toLowerCase().replace(/[^a-z0-9]+/g, '-');
+						if (!heading.id) heading.id = id;
+						return `<a href="#${id}" class="block text-slate-300 hover:text-cyan-300 transition">${heading.tagName === 'H2' ? heading.textContent : '  ' + heading.textContent}</a>`;
+					})
+					.join('');
+			}
+			window.addEventListener('DOMContentLoaded', buildToc);
+		</script>
 	</body>
 </html>
